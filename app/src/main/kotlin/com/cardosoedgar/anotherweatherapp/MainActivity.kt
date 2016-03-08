@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity(),
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ city ->
-                            val dateFormat = SimpleDateFormat("HH:mm dd/MM/yyyy")
+                            val dateFormat = SimpleDateFormat("dd MMM yyyy   HH:mm")
                             var temp = Math.round(city.main.temp)
 
                             textViewName.text = city.name
