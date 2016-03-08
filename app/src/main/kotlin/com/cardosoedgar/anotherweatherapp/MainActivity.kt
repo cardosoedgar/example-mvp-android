@@ -1,6 +1,8 @@
 package com.cardosoedgar.anotherweatherapp
 
 import android.Manifest
+import android.content.Context
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -93,7 +95,16 @@ class MainActivity : AppCompatActivity(),
                 { location ->
             if(location is Location)
                 getWeatherOnLocation(location.latitude, location.longitude)
+                saveLocation(location)
         })
+    }
+
+    private fun saveLocation(location: Location) {
+        val sharedPref = getSharedPreferences(getString(R.string.shared_pref), Context.MODE_PRIVATE)
+        sharedPref.makeEdit {
+            putString("latitude", location.latitude.toString())
+            putString("longitude", location.longitude.toString())
+        }
     }
 
     private fun getWeatherOnLocation(latitude: Double, longitude: Double) {
@@ -119,5 +130,11 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onConnectionFailed(p0: ConnectionResult) {
+    }
+
+    inline fun SharedPreferences.makeEdit(func: SharedPreferences.Editor.() -> Unit) {
+        val editor = edit()
+        editor.func()
+        editor.apply()
     }
 }

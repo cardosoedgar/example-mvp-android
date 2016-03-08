@@ -13,4 +13,8 @@ interface OpenWeather {
     @GET("weather?units=metric&appid=be14c6367245244b5fffaa2283642b25")
     fun getCurrentLocationWeather(@Query("lat") latitude : Double,
                                   @Query("lon") longitude: Double): Observable<Model.City>
+
+    @GET("weather?units=metric&appid=be14c6367245244b5fffaa2283642b25")
+    fun getCurrentLocationWeather(@Query("lat") latitude : String,
+                                  @Query("lon") longitude: String): Observable<Model.City>
 }
