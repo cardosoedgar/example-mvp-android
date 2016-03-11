@@ -1,6 +1,9 @@
 package com.cardosoedgar.anotherweatherapp.dagger
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
+import com.cardosoedgar.anotherweatherapp.R
 import com.cardosoedgar.anotherweatherapp.retrofit.OpenWeather
 import dagger.Module
 import dagger.Provides
@@ -35,5 +38,11 @@ class AppModule(private val application: Application) {
     @Singleton
     fun providesOpenWeather(retrofit: Retrofit): OpenWeather {
         return retrofit.create(OpenWeather::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesSharedPreferences(application: Application) : SharedPreferences {
+        return application.getSharedPreferences(application.getString(R.string.shared_pref), Context.MODE_PRIVATE)
     }
 }

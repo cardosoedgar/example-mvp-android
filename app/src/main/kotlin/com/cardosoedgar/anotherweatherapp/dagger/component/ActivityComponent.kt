@@ -1,8 +1,9 @@
 package com.cardosoedgar.anotherweatherapp.dagger.component
 
-import com.cardosoedgar.anotherweatherapp.MainActivity
+import com.cardosoedgar.anotherweatherapp.views.location.LocationPresenter
 import com.cardosoedgar.anotherweatherapp.dagger.ActivityScope
 import com.cardosoedgar.anotherweatherapp.dagger.LocationModule
+import com.cardosoedgar.anotherweatherapp.views.weather.WeatherPresenter
 import dagger.Subcomponent
 
 /**
@@ -11,5 +12,6 @@ import dagger.Subcomponent
 @ActivityScope
 @Subcomponent(modules= arrayOf(LocationModule::class))
 interface ActivityComponent {
-    fun inject(activity: MainActivity)
+    fun inject(weatherPresenter: WeatherPresenter)
+    fun inject(locationPresenter: LocationPresenter)
 }
