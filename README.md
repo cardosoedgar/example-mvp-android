@@ -1,6 +1,8 @@
-#Another Weather App
+#Another Weather App (MVP)
 
-Simple project developed in [Kotlin](https://kotlinlang.org/) that displays weather on current location of the device.
+Simple project developed in [Kotlin](https://kotlinlang.org/) using
+[MVP architecture](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter)
+that displays weather on current location of the device.
 
 #### Libs Used
 
