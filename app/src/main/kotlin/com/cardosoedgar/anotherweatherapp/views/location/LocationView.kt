@@ -7,4 +7,5 @@ import android.location.Location
  */
 interface LocationView {
     fun onLocationProvided(location : Location)
+    fun requestPermission(permission: String, requestCode: Int)
 }

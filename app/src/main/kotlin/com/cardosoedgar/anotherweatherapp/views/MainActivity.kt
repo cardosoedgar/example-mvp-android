@@ -55,6 +55,22 @@ class MainActivity : AppCompatActivity(), LocationView, WeatherView,
         textViewTime.text = "Could not retrive location"
     }
 
+    override fun onLocationProvided(location: Location) {
+        weatherProvider.getWeatherOnLocation(location)
+    }
+
+    override fun requestPermission(permission: String, requestCode: Int) {
+        requestPermissions(arrayOf(permission), requestCode)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when(requestCode) {
+            locationProvider.getPermissionRequestCode() ->
+                if(grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    locationProvider.onPermissionAccepted()
+        }
+    }
+
     override fun onStart() {
         locationProvider.onStart()
         super.onStart()
@@ -72,18 +88,6 @@ class MainActivity : AppCompatActivity(), LocationView, WeatherView,
 
     override fun onConnected(p0: Bundle?) {
         locationProvider.onConnected()
-    }
-
-    override fun onLocationProvided(location: Location) {
-        weatherProvider.getWeatherOnLocation(location)
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when(requestCode) {
-            locationProvider.getPermissionRequestCode() ->
-                if(grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    locationProvider.onPermissionAccepted()
-        }
     }
 
     override fun onConnectionSuspended(p0: Int) {

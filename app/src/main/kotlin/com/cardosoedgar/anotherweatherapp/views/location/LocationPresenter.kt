@@ -9,6 +9,7 @@ import android.location.Location
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import com.cardosoedgar.anotherweatherapp.Codes
 import com.cardosoedgar.anotherweatherapp.CustomApplication
 import com.cardosoedgar.anotherweatherapp.views.location.LocationInterface
 import com.cardosoedgar.anotherweatherapp.views.location.LocationView
@@ -31,8 +32,6 @@ import javax.inject.Inject
  */
 class LocationPresenter : LocationInterface {
 
-    val PERMISSION_REQUEST_CODE = 1;
-
     val locationRequest = LocationRequest()
     var locationView: LocationView? = null
 
@@ -44,8 +43,8 @@ class LocationPresenter : LocationInterface {
         this.locationView = locationView
     }
 
-    override fun getPermissionRequestCode(): Int{
-        return PERMISSION_REQUEST_CODE
+    override fun getPermissionRequestCode(): Int {
+        return Codes.PERMISSION_REQUEST_CODE
     }
 
     override fun onStart() {
@@ -67,8 +66,7 @@ class LocationPresenter : LocationInterface {
     override fun onConnected() {
         val permissionCheck = ContextCompat.checkSelfPermission(locationView as Context, Manifest.permission.ACCESS_FINE_LOCATION)
         if(permissionCheck != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(locationView as Activity,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), PERMISSION_REQUEST_CODE)
+            locationView?.requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, this.getPermissionRequestCode())
             return;
         }
 
