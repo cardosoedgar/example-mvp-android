@@ -1,30 +1,19 @@
 package com.cardosoedgar.anotherweatherapp.views.location
 
 import android.Manifest
-import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
-import android.os.Bundle
-import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import com.cardosoedgar.anotherweatherapp.Codes
 import com.cardosoedgar.anotherweatherapp.CustomApplication
-import com.cardosoedgar.anotherweatherapp.views.location.LocationInterface
-import com.cardosoedgar.anotherweatherapp.views.location.LocationView
 import com.cardosoedgar.anotherweatherapp.dagger.LocationModule
-import com.cardosoedgar.anotherweatherapp.retrofit.OpenWeather
-import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.LocationSettingsStatusCodes
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 /**
@@ -94,6 +83,11 @@ class LocationPresenter : LocationInterface {
                 })
     }
 
+    /*
+
+    saving location so the widget can request weather conditions.
+
+     */
     private fun saveLocation(location: Location) {
         sharedPreferences.makeEdit {
             putString("latitude", location.latitude.toString())
