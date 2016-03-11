@@ -52,7 +52,7 @@ class LocationPresenter : LocationInterface {
         setupRequestLocation()
     }
 
-    override fun onConnected() {
+    override fun requestLocation() {
         val permissionCheck = ContextCompat.checkSelfPermission(locationView as Context, Manifest.permission.ACCESS_FINE_LOCATION)
         if(permissionCheck != PackageManager.PERMISSION_GRANTED) {
             locationView?.requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, this.getPermissionRequestCode())

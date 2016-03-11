@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">AnotherWeatherApp</string>
+    <string name="app_name">Weather Example(MVP)</string>
     <string name="action_settings">Settings</string>
     <string name="shared_pref">another_weather_app_pref</string>
+    <string name="refresh">refresh</string>
 </resources>

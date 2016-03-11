@@ -5,6 +5,8 @@ import android.location.Location
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
 import com.cardosoedgar.anotherweatherapp.CustomApplication
 import com.cardosoedgar.anotherweatherapp.R
@@ -68,6 +70,8 @@ class MainActivity : AppCompatActivity(), LocationView, WeatherView,
             locationProvider.getPermissionRequestCode() ->
                 if(grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                     locationProvider.onPermissionAccepted()
+                else
+                    textViewTime.text = "Location permission not provided"
         }
     }
 
@@ -87,12 +91,25 @@ class MainActivity : AppCompatActivity(), LocationView, WeatherView,
     }
 
     override fun onConnected(p0: Bundle?) {
-        locationProvider.onConnected()
+        locationProvider.requestLocation()
     }
 
     override fun onConnectionSuspended(p0: Int) {
     }
 
     override fun onConnectionFailed(p0: ConnectionResult) {
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val id = item?.itemId
+        if (id == R.id.refresh) {
+            locationProvider.requestLocation()
+        }
+        return true
     }
 }

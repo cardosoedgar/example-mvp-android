@@ -9,5 +9,5 @@ interface LocationInterface {
     fun onStart()
     fun onStop()
     fun onDestroy()
-    fun onConnected()
+    fun requestLocation()
 }
