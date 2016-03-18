@@ -3,7 +3,7 @@ package com.cardosoedgar.anotherweatherapp
 /**
  * Created by edgarcardoso on 3/7/16.
  */
-object Model {
+object Models {
     data class City(val name: String,
                     val id: String,
                     val base: String,

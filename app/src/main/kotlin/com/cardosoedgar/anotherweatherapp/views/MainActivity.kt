@@ -16,7 +16,7 @@ import com.cardosoedgar.anotherweatherapp.CustomApplication
 import com.cardosoedgar.anotherweatherapp.R
 import com.cardosoedgar.anotherweatherapp.butterknife.*
 import com.cardosoedgar.anotherweatherapp.dagger.ActivityModule
-import com.cardosoedgar.anotherweatherapp.Model
+import com.cardosoedgar.anotherweatherapp.Models
 import com.cardosoedgar.anotherweatherapp.views.weather.WeatherInterface
 import com.cardosoedgar.anotherweatherapp.views.weather.WeatherView
 import com.google.android.gms.common.ConnectionResult
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), WeatherView,
         setSupportActionBar(toolbar)
     }
 
-    override fun onSuccess(city: Model.City) {
+    override fun onSuccess(city: Models.City) {
         val dateFormat = SimpleDateFormat("HH:mm - dd MMM")
         val temp = Math.round(city.main.temp)
 
