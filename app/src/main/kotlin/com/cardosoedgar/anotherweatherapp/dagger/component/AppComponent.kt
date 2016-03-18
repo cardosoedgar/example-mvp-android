@@ -1,8 +1,8 @@
 package com.cardosoedgar.anotherweatherapp.dagger.component
 
 import com.cardosoedgar.anotherweatherapp.dagger.AppModule
-import com.cardosoedgar.anotherweatherapp.dagger.LocationModule
-import com.cardosoedgar.anotherweatherapp.dagger.PresenterModule
+import com.cardosoedgar.anotherweatherapp.dagger.ActivityModule
+import com.cardosoedgar.anotherweatherapp.views.weather.WeatherPresenter
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,6 +12,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules= arrayOf(AppModule::class))
 interface AppComponent {
-    fun activityComponent(locationModule: LocationModule): ActivityComponent
-    fun presenterComponent(presenterModule: PresenterModule): PresenterComponent
+    fun inject(weatherPresenter: WeatherPresenter)
+
+    fun activityComponent(activityModule: ActivityModule): ActivityComponent
 }

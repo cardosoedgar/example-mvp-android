@@ -1,17 +1,15 @@
 package com.cardosoedgar.anotherweatherapp.dagger.component
 
-import com.cardosoedgar.anotherweatherapp.views.location.LocationPresenter
 import com.cardosoedgar.anotherweatherapp.dagger.ActivityScope
-import com.cardosoedgar.anotherweatherapp.dagger.LocationModule
-import com.cardosoedgar.anotherweatherapp.views.weather.WeatherPresenter
+import com.cardosoedgar.anotherweatherapp.dagger.ActivityModule
+import com.cardosoedgar.anotherweatherapp.views.MainActivity
 import dagger.Subcomponent
 
 /**
- * Created by edgarcardoso on 3/7/16.
+ * Created by edgarcardoso on 3/11/16.
  */
 @ActivityScope
-@Subcomponent(modules= arrayOf(LocationModule::class))
+@Subcomponent(modules = arrayOf(ActivityModule::class))
 interface ActivityComponent {
-    fun inject(weatherPresenter: WeatherPresenter)
-    fun inject(locationPresenter: LocationPresenter)
+    fun inject(mainActivity: MainActivity)
 }
